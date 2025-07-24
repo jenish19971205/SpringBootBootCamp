@@ -28,13 +28,20 @@ public class StudentRepositaryImpl implements StudentRepositary{
         return "Students Data Added Sucessfully";
     }
 
-    /**
-     * @param student
-     * @return
-     */
     @Override
-    public String updateStudent(Student student) {
+    public List<Student> updateStudent(int id, String name) {
+        for (Student s : students){
+            if (s.getId() == id){
+                s.setName(name);
+            }
+        }
+        return students;
+    }
 
+    @Override
+    public String deleteStudent(int id) {
+        students.remove(id);
+        return "deleted the student data sucessfully";
     }
 
 

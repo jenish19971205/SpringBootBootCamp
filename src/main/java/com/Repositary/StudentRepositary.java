@@ -10,5 +10,9 @@ public interface StudentRepositary {
 
    public String addStudent(Student student);
 
-    String updateStudent(Student student);
+   List<Student> updateStudent(int id, String name);
+
+    String deleteStudent(int id);
+
+    ;
 }

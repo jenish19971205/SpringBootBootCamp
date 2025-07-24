@@ -2,7 +2,6 @@ package com.doctutorials.studentapp.controller;
 
 import com.model.Student;
 import com.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,8 +9,11 @@ import java.util.List;
 @RestController
 public class StudentController {
 
-    @Autowired
-    private StudentService studentService;
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService=studentService;
+    }
 
     @GetMapping("/getStudent")
     public List<Student> getStudent() {
@@ -24,7 +26,16 @@ public class StudentController {
 
     }
     @PutMapping("/updateStudent")
-    public String updateStudent(@RequestParam Student student){
-        return studentService.updateStudent(student);
+    public List<Student> updateStudent(){
+        int id = 2;
+        String name = "Rachel";
+        return studentService.updateStudent(id,name);
     }
+    @DeleteMapping("/deleteStudent")
+    public String deleteStudent(){
+        int id = 1;
+        return studentService.deleteStudent(id);
+    }
+
+
 }
